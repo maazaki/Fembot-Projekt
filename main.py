@@ -8,10 +8,10 @@ import urllib.parse, urllib.request, re
 
 bot = commands.Bot(command_prefix='$')
 reddit = praw.Reddit(client_id="qye-tFFQVg9xmw",
-                     client_secret="A98eb3XTpPr0rPFacW80ZxpIsZg",
-                     username="Niconicokneecaps69",
-                     password="discordbot",
-                     user_agent="fembot")
+                     client_secret="?",
+                     username="?",
+                     password="?",
+                     user_agent="?")
 
 
 class Slapper(commands.Converter):
