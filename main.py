@@ -234,4 +234,4 @@ async def nigger(ctx):
 
 
 
-bot.run("NzQ5NDcyMzU5NzQ0MDEyMzgw.X0sehw.fdR8Kxk76bXuTRHzwrLY_E95NIw")
+bot.run("TOKEN")
