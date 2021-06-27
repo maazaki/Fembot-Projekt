@@ -7,13 +7,14 @@ import praw
 from random import choice
 from discord.ext import commands
 import urllib.parse, urllib.request, re
+import redditstuff
 
 bot = commands.Bot(command_prefix='$')
-reddit = praw.Reddit(client_id="qye-tFFQVg9xmw",
-                     client_secret="A98eb3XTpPr0rPFacW80ZxpIsZg",
-                     username="Niconicokneecaps69",
-                     password="discordbot",
-                     user_agent="fembot")
+reddit = praw.Reddit(client_id=redditstuff.client_id,
+                     client_secret=redditstuff.client_secret,
+                     username=redditstuff.username,
+                     password=redditstuff.password,
+                     user_agent=redditstuff.user_agent)
 
 
 class Slapper(commands.Converter):
