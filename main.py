@@ -1,6 +1,8 @@
 import random
 import discord
 import random
+from discord import channel
+from discord.enums import MessageType
 import praw
 from random import choice
 from discord.ext import commands
@@ -8,10 +10,10 @@ import urllib.parse, urllib.request, re
 
 bot = commands.Bot(command_prefix='$')
 reddit = praw.Reddit(client_id="qye-tFFQVg9xmw",
-                     client_secret="?",
-                     username="?",
-                     password="?",
-                     user_agent="?")
+                     client_secret="A98eb3XTpPr0rPFacW80ZxpIsZg",
+                     username="Niconicokneecaps69",
+                     password="discordbot",
+                     user_agent="fembot")
 
 
 class Slapper(commands.Converter):
@@ -22,14 +24,14 @@ class Slapper(commands.Converter):
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game('mr robot '))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game('with my nervs'))
     print('We have logged in as {0.user}'.format(bot))
     print('bot is now working lol')
 
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send(f"here is your ping {round(bot.latency * 1000)}ms")
+    await ctx.send(f"deez nutz {round(bot.latency * 1000)}ms")
 
 
 @bot.command()
@@ -39,10 +41,10 @@ async def test(ctx):
 
 @bot.command(aliases=['imsad'])
 async def hug(ctx):
-    await ctx.send('i hug you back bec i love you and i am at gun point')
+    await ctx.send('i will hug you back bec i love you and i am at gun point')
 
 
-@bot.command(aliases=['son'])
+@bot.command(aliases=['son', 'are you wining son'])
 async def areyouwinningson(ctx):
     await ctx.send('no dad im depressed and nothing makes me happy anymore')
 
@@ -80,6 +82,7 @@ async def meme(ctx):
     em = discord.Embed(title=name)
     em.set_image(url=url)
     await ctx.send(embed=em)
+
 
 
 @bot.command()
@@ -127,11 +130,20 @@ async def repeat(ctx, arg):
        await ctx.send("yes we know")
     else:
         await ctx.send(arg)
-nword = ('mrs obama get down' , 'he is going to say the n-word' , 'you rasic scum i will cancel you on twitter')
 
-@bot.command(aliases=['nword', 'black' ,'nigga'])
-async def nigger(ctx):
-    await ctx.send (random.choice(nword))
+
+nword = ('mrs obama get down' , 'they is going to say the n-word' , 'you rasic scum i will cancel you on twitter','thats a hard R now you are getting out of hand buddy')
+
+@bot.event
+async def on_message(message):
+    if message.content.startswith('nigger'):
+        await message.channel.send(random.choice(nword))
+        await bot.process_commands(message)
+
+    if message.author.bot:
+        return
+    await bot.process_commands(message)
+
 
 @bot.command(aliases=['u gay', 'why are you named fembot' ,'femboi'])
 async def fembot(ctx):
@@ -139,20 +151,20 @@ async def fembot(ctx):
 
 @bot.command(aliases=['makers' , 'creators' , 'devs' ])
 async def developers(ctx):
-    await ctx.send ('im developed by omar and mohamed')
+    await ctx.send ('im developed by diana and maazaki')
 
 @bot.command(aliases=['lemon' , 'lime'])
 async def lemonade(ctx):
     await ctx.send ('https://www.youtube.com/watch?v=yK1JRtoBY3Y')
 
-Ballchoice = ('As I see it, yes.' , 'Ask again later.' , 'Better not tell you now.' ,'Cannot predict now.' , 'Concentrate and ask again.' , 'Don�t count on it.' , 'It is certain.' , 'It is decidedly so.' , 'My reply is no.' , 'My sources say no.' , 'Outlook not so good.' , 'Outlook good.' , 'Reply hazy, try again.' , 'Signs point to yes.' , 'Very doubtful.' , 'Without a doubt.' , 'Yes.' , 'Yes � definitely.')
+Ballchoice = ('As I see it, yes.' , 'Ask again later.' , 'Better not tell you now.' ,'Cannot predict now.' , 'Concentrate and ask again.' , 'Don’t count on it.' , 'It is certain.' , 'It is decidedly so.' , 'My reply is no.' , 'My sources say no.' , 'Outlook not so good.' , 'Outlook good.' , 'Reply hazy, try again.' , 'Signs point to yes.' , 'Very doubtful.' , 'Without a doubt.' , 'Yes.' , 'Yes – definitely.')
 
-@bot.command(aliases=['help 8 ball'])
+@bot.command(aliases=['help 8 ball','8ball'])
 async def ballcommands(ctx):
-    await ctx.send (' As I see it, yes.\nAsk again later.\nBetter not tell you now.\nCannot predict now.\nConcentrate and ask again.\nDon�t count on it.\nIt is certain.\nIt is decidedly so.\nMost likely.\nMy reply is no.\nMy sources say no.\nOutlook not so good.\nOutlook good.\nReply hazy, try again.\nSigns point to yes.\nVery doubtful.\nWithout a doubt.\nYes.\nYes � definitely.\nYou may rely on it.')
+    await ctx.send (' As I see it, yes.\nAsk again later.\nBetter not tell you now.\nCannot predict now.\nConcentrate and ask again.\nDon’t count on it.\nIt is certain.\nIt is decidedly so.\nMost likely.\nMy reply is no.\nMy sources say no.\nOutlook not so good.\nOutlook good.\nReply hazy, try again.\nSigns point to yes.\nVery doubtful.\nWithout a doubt.\nYes.\nYes – definitely.\nYou may rely on it.')
 @bot.command(aliases=['choice'])
 async def ballc(ctx):
-    await ctx.send(random.choice(ballchoice))
+    await ctx.send(random.choice(Ballchoice))
 
 throw = (1 , 2 , 3 , 4 , 5 , 6)
 
@@ -160,12 +172,26 @@ throw = (1 , 2 , 3 , 4 , 5 , 6)
 async def die(ctx):
     await ctx.send(random.choice(throw))
 
+#you can change the file directory nased one the place of the text files
+#i have mine at my D directory and I named the folder "discord_bot storage"
+#the ranndom choice works beacuse i have the quotes like these '' or "" if they aren't there it wouldn't be considered a value each and would just print the whole text file
+#example "songslink"
+#         "another song link"
+#so it is considered an another value
+#an easy way to get the file location is just to copy the file explorer path then \yourtxtfile 
 
-randomaritsts = ('fairouz' , 'eminem' , 'Mac miller' , 'Adele' , 'Childish gambino' ,'Freddie dredd' ,'ghostmane' ,'Alec Benjamin' ,'hozier','Joji','Juice wrld','sub urban','um kulthoum')
+randomaritsts = ('fairouz' , 'eminem' , 'Mac miller' , 'mac demarco' , 'Adele' , 'Childish gambino' ,'Freddie dredd' ,'ghostmane' ,'Alec Benjamin' ,'hozier','Joji','Juice wrld','sub urban','um kulthoum')
 
 @bot.command(aliases=['artist' 'random singer'])
 async def randomartist(ctx):
     await ctx.send(random.choice(randomaritsts))
+
+
+
+@bot.command(aliases=['Mac demarco','Mac Demarco'])
+async def macdemarco(ctx):
+    await ctx.send((random.choice(list(open('D:\discord_bot storage\Mac_demarco.txt')))))
+
 
 
 @bot.command(aliases=['filthyfrank'])
@@ -193,7 +219,7 @@ async def Freddiedredd(ctx):
 async def fyrooz(ctx):
     await ctx.send((random.choice(list(open('D:\discord_bot storage\Fyrooz.txt')))))
 
-@bot.command(aliases=['ghost mane'])
+@bot.command(aliases=['ghoste mane'])
 async def ghostmane(ctx):
     await ctx.send((random.choice(list(open('D:\discord_bot storage\ghostmane.txt')))))
 
@@ -214,24 +240,10 @@ async def Random(ctx):
 async def suburban(ctx):
     await ctx.send((random.choice(list(open('D:\discord_bot storage\sub_urban.txt')))))
 
+
 @bot.command(aliases=['um kulthoum'])
 async def umkulthoum(ctx):
     await ctx.send((random.choice(list(open(r'D:\discord_bot storage\Um_kulthoum.txt')))))
 
-help = ('ok i will guide you through the commands,first the test command,then the ping,hug')
 
-@bot.command(aliases=['nword', 'black' ,'nigga'])
-async def nigger(ctx):
-    await ctx.send (random.choice(nword))
-
-
-
-
-
-
-
-
-
-
-
-bot.run("TOKEN")
+bot.run("your token")
